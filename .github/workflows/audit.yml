@@ -1,0 +1,35 @@
+# Checks the cask as Homebrew's own CI would, then installs it from this tap on a clean Mac and
+# removes it again, so a broken cask shows up here rather than on someone's machine.
+name: Audit
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: macos-15
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+      - name: Tap this checkout
+        run: |
+          brew update --quiet
+          brew tap shrimbly/booth "$GITHUB_WORKSPACE"
+          # Newer Homebrew only loads casks from taps you trust.
+          if brew commands --quiet | grep -qx trust; then brew trust --tap shrimbly/booth; fi
+      - name: Style
+        run: brew style shrimbly/booth/booth
+      - name: Audit
+        run: brew audit --cask --strict --online shrimbly/booth/booth
+      - name: Install
+        run: |
+          brew install --cask shrimbly/booth/booth
+          test -x "$(brew --prefix)/bin/booth"
+          spctl --assess --type execute --verbose=2 /Applications/Booth.app
+      - name: Uninstall
+        run: |
+          brew uninstall --cask --zap shrimbly/booth/booth
+          test ! -e /Applications/Booth.app
