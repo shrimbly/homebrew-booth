@@ -1,6 +1,6 @@
 # Booth for Homebrew
 
-[Booth](https://getbooth.vercel.app) cleans up the voice in any video or audio file, on your Mac.
+[Booth](https://getbooth.xyz) cleans up the voice in any video or audio file, on your Mac.
 This tap installs it:
 
 ```bash

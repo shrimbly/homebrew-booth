@@ -8,7 +8,7 @@ cask "booth" do
   url "https://github.com/shrimbly/booth/releases/download/v#{version}/Booth-#{version}.dmg"
   name "Booth"
   desc "Studio-quality voice for your recordings, enhanced locally"
-  homepage "https://getbooth.vercel.app/"
+  homepage "https://getbooth.xyz/"
 
   livecheck do
     url :url
