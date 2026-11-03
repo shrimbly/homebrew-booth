@@ -2,8 +2,8 @@
 # dist/booth.rb; with --publish it commits that as Casks/booth.rb to the tap (BOOTH_TAP), so:
 #   brew install --cask shrimbly/booth/booth
 cask "booth" do
-  version "0.1.0"
-  sha256 "c9c61f24351ab3e32e18955423654e7d0a2cfc357bf1d9b053451460695bb780"
+  version "0.2.1"
+  sha256 "26cb3d82bf89259e8ea4e6802f3b0d1483510d9e734734f1dab891a9f4c0647d"
 
   url "https://github.com/shrimbly/booth/releases/download/v#{version}/Booth-#{version}.dmg"
   name "Booth"
